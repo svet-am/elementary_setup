@@ -16,6 +16,8 @@ strindex() {
   [[ "$x" = "$1" ]] && echo -1 || echo "${#x}"
 }
 
+PACKAGE_ARRAY=();
+
 echo -n "##Setting up DPKG for i386...";
 sudo dpkg --add-architecture i386 2> /dev/null;
 if [ $? -eq 0 ]
@@ -44,4 +46,12 @@ then
 else
   echo "${RED}FAILED!${NC}" >&2
 fi
+
+echo "##Checking for Intel CPU..."
+echo "##Installing Intel microcode package..."
+sudo apt-get -y install intel-microcode;
+
+
+echo "##Checking video adapter hardware..."
+video_line=`lspci | grep VGA`;
 
