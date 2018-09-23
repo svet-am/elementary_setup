@@ -49,7 +49,9 @@ fi
 
 echo "##Checking for Intel CPU..."
 echo "##Installing Intel microcode package..."
+#AuthenticAMD / GenuineIntel
 sudo apt-get -y install intel-microcode;
+sudo apt-get -y install amd64-microcode;
 
 
 echo "##Checking video adapter hardware..."
